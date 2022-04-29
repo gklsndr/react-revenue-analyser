@@ -1,0 +1,19 @@
+.header {
+  display: flex;
+  height: auto;
+  background-color: #0f83c2;
+  color: white;
+  font-family: "Courier New", Courier, monospace;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px;
+  margin: 5px;
+  border-radius: 12px;
+}
+.MuiOutlinedInput-root {
+  color: white !important;
+  border: 1px solid white;
+}
+.MuiSelect-icon {
+  color: white;
+}

@@ -3,6 +3,9 @@
   "description": "Examples for react-stockcharts",
   "version": "0.0.24",
   "dependencies": {
+    "@emotion/react": "latest",
+    "@emotion/styled": "latest",
+    "@mui/material": "latest",
     "d3-dsv": "^1.0.8",
     "d3-format": "^1.2.1",
     "d3-scale": "^1.0.7",
@@ -12,10 +15,8 @@
     "react-bootstrap": "^0.31.5",
     "react-dom": "^16.2.0",
     "react-stockcharts": "^0.7.8",
-    "shortid": "^2.2.8",
-    "@emotion/react": "latest",
-    "@emotion/styled": "latest",
-    "@mui/material": "latest"
+    "react-virtualized": "9.22.3",
+    "shortid": "^2.2.8"
   },
   "devDependencies": {
     "react-scripts": "^1.0.17"

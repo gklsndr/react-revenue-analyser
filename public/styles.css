@@ -15,5 +15,5 @@
   border: 1px solid white;
 }
 .MuiSelect-icon {
-  color: white;
+  color: white !important;
 }

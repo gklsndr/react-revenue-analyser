@@ -1,6 +1,6 @@
 {
-  "name": "revenue-analysis",
-  "description": "Examples for react-stockcharts",
+  "name": "revenue-analyser",
+  "description": "",
   "version": "0.0.24",
   "dependencies": {
     "@emotion/react": "latest",

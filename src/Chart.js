@@ -11,6 +11,7 @@ import MenuItem from "@mui/material/MenuItem";
 import { discontinuousTimeScaleProvider } from "react-stockcharts/lib/scale";
 import { fitWidth } from "react-stockcharts/lib/helper";
 import { last } from "react-stockcharts/lib/utils";
+import { filterLOB } from "./utils";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -22,47 +23,67 @@ const MenuProps = {
     }
   }
 };
-let lobList = ["LOB-1"];
+
 class CandleStickStockScaleChartWithVolumeBarV1 extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selLOB: lobList[0],
-      chartData: null
+      selLOB: "LOB-1",
+      // initData : props.data,
+      chartData: filterLOB(props.data, "LOB-1"),
+      lobList: [
+        ...new Set(
+          props.data.map((d) => {
+            return d.line_of_business;
+          })
+        )
+      ]
     };
 
     this.updateLOB = this.updateLOB.bind(this);
   }
 
-  updateLOB() {}
-  render() {
-    const { type, data: initialData, width, ratio } = this.props;
+  updateLOB(eventData) {
+    this.setState({
+      selLOB: eventData.target.value,
+      chartData: filterLOB(this.props.data, eventData.target.value)
+    });
 
+    console.log(eventData.target.value);
+  }
+  render() {
+    console.log("Props:", this.props);
+    const { type, width, ratio } = this.props;
+
+    const initialData = this.state.chartData;
+    console.log("filtered state", initialData);
     const xScaleProvider = discontinuousTimeScaleProvider.inputDateAccessor(
       (d) => d.date
     );
     const { data, xScale, xAccessor, displayXAccessor } = xScaleProvider(
       initialData
     );
-
+    console.log("data:", data);
     const start = xAccessor(last(data));
     const end = xAccessor(data[Math.max(0, data.length - 100)]);
     const xExtents = [start, end];
 
     return (
       <div>
-        <Select
-          value={this.state.LOB}
-          onChange={this.updateLOB}
-          MenuProps={MenuProps}
-          inputProps={{ "aria-label": "Without label" }}
-        >
-          {lobList.map((name) => (
-            <MenuItem key={name} value={name} classes="chartItem">
-              {name}
-            </MenuItem>
-          ))}
-        </Select>
+        <div className="toolbar">
+          <Select
+            value={this.state.selLOB}
+            onChange={this.updateLOB}
+            MenuProps={MenuProps}
+            inputProps={{ "aria-label": "Without label" }}
+          >
+            {this.state.lobList.map((name) => (
+              <MenuItem key={name} value={name} classes="chartItem">
+                {name}
+              </MenuItem>
+            ))}
+          </Select>
+        </div>
         <ChartCanvas
           height={400}
           ratio={ratio}

@@ -57,3 +57,12 @@ export function transformTimeseriesData(data) {
   // console.log("series data", seriesData);
   return seriesData;
 }
+
+export function filterLOB(data, lob) {
+  let filteredValues = data.filter((d) => {
+    return d.line_of_business === lob;
+  });
+  console.log("Filtered values", filteredValues);
+
+  return filteredValues;
+}

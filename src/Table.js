@@ -150,54 +150,54 @@ const VirtualizedTable = styled(MuiVirtualizedTable)(styles);
 
 export default function ReactVirtualizedTable(tableData) {
   return (
-    <Paper style={{ height: 400, width: "100%" }}>
+    <Paper style={{ height: "50%", width: "100%" }}>
       <VirtualizedTable
         rowCount={tableData.length}
         rowGetter={({ index }) => tableData[index]}
         columns={[
           {
-            // width: 10,
+            width: "10%",
             label: "S.No",
             dataKey: "S_no"
           },
           {
-            width: 200,
+            width: "12%",
             label: "Line of Business",
             dataKey: "line_of_business",
             numeric: true
           },
           {
-            width: 200,
+            width: "12%",
             label: "Revenue Type",
             dataKey: "revenue_type",
             numeric: true
           },
           {
-            width: 200,
+            width: "12%",
             label: "Product",
             dataKey: "product",
             numeric: true
           },
           {
-            width: 200,
+            width: "12%",
             label: "Posting Period",
             dataKey: "date",
             numeric: true
           },
           {
-            width: 120,
+            width: "12%",
             label: "ACV",
             dataKey: "acv",
             numeric: true
           },
           {
-            width: 120,
+            width: "12%",
             label: "TCV",
             dataKey: "tcv",
             numeric: true
           },
           {
-            width: 120,
+            width: "12%",
             label: "Revenue",
             dataKey: "revenue",
             numeric: true

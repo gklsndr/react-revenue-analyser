@@ -8,20 +8,37 @@ import revenueData from "../public/data.js";
 import "../public/styles.css";
 import ReactVirtualizedTable from "./Table";
 
+const chartTypes = [
+  "Revenue & ACV timeline",
+  "Revenue & TCV timeline",
+  "ACV vs TCV"
+];
+
 class ChartComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedChart: chartTypes[0],
+      chartData: null
+    };
+
+    this.updateChartType = this.updateChartType.bind(this);
+  }
+
+  updateChartType(eventData) {
+    // this.state.selectedChart = eventData.target.value;
+    this.setState({ selectedChart: eventData.target.value });
+    console.log("Chart Selected", eventData.target.value);
+  }
+
   componentDidMount() {
     getData().then((data) => {
-      this.setState({ data });
+      this.setState({ chartData: data });
       console.log(data);
     });
   }
+
   render() {
-    const chartTypes = [
-      "Revenue & ACV timeline",
-      "Revenue & TCV timeline",
-      "ACV vs TCV"
-    ];
-    this.selectedChart = chartTypes[0];
     const ITEM_HEIGHT = 48;
     const ITEM_PADDING_TOP = 8;
     const MenuProps = {
@@ -33,17 +50,12 @@ class ChartComponent extends React.Component {
       }
     };
 
-    function handleChange(eventData) {
-      this.selectedChart = eventData.target.value;
-      console.log("Chart Selected", eventData.target.value);
-    }
-
     return (
       <div className="appRoot">
         <div className="header">
           <Select
-            value={this.selectedChart}
-            onChange={handleChange}
+            value={this.state.selectedChart}
+            onChange={this.updateChartType}
             MenuProps={MenuProps}
             inputProps={{ "aria-label": "Without label" }}
           >
@@ -55,11 +67,11 @@ class ChartComponent extends React.Component {
           </Select>
           Hi Bruce Wayne
         </div>
-        {!this.state && <div>Loading...</div>}
+        {!this.state.chartData && <div>Loading...</div>}
 
-        {this.state && (
-          <div>
-            <Chart data={this.state.data} />
+        {this.state.chartData && (
+          <div className="dataContainer">
+            <Chart data={this.state.chartData} />
             {ReactVirtualizedTable(revenueData)}
           </div>
         )}

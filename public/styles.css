@@ -1,19 +1,36 @@
+.appRoot {
+  height: 100vh;
+}
 .header {
   display: flex;
-  height: auto;
+  height: 72px;
   background-color: #0f83c2;
   color: white;
   font-family: "Courier New", Courier, monospace;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 16px;
+  padding: 16px 16px;
   margin: 5px;
   border-radius: 12px;
+}
+.dataContainer {
+  height: calc(100% - 100px);
 }
 .MuiOutlinedInput-root {
   color: white !important;
   border: 1px solid white;
+  border-radius: 25px;
+  height: 40px;
+  font-size: 14px;
 }
 .MuiSelect-icon {
   color: white !important;
+}
+.ReactVirtualized__Table__rowColumn:not(:first-child) {
+  flex-grow: 1;
+  justify-content: left;
+}
+.ReactVirtualized__Table__headerColumn:not(:first-child) {
+  flex-grow: 1;
+  justify-content: left;
 }

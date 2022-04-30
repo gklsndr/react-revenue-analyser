@@ -9,7 +9,7 @@ import "../public/styles.css";
 import ReactVirtualizedTable from "./Table";
 
 const chartTypes = [
-  "Revenue & ACV timeline (Single Product)",
+  "Revenue & ACV timeline (All Products)",
   "Revenue & TCV timeline",
   "ACV vs TCV"
 ];

@@ -186,19 +186,19 @@ export default function ReactVirtualizedTable(tableData) {
           },
           {
             width: "12%",
-            label: "ACV",
+            label: "ACV ($)",
             dataKey: "acv",
             numeric: true
           },
           {
             width: "12%",
-            label: "TCV",
+            label: "TCV ($)",
             dataKey: "tcv",
             numeric: true
           },
           {
             width: "12%",
-            label: "Revenue",
+            label: "Revenue (Millions $)",
             dataKey: "revenue",
             numeric: true
           }

@@ -24,3 +24,36 @@ export function getData() {
     .then((data) => tsvParse(data, parseData(parseDate)));
   return promiseMSFT;
 }
+
+export function transformTimeseriesData(data) {
+  // console.log("Revenue data", data);
+  const monthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+  ];
+  let sumAcv = 0;
+  let seriesData = data.map((d) => {
+    d.date = new Date(d.year, monthNames.indexOf(d.month));
+    d.dateString = d.month.slice(0, 3) + " - " + d.year;
+    d.open = sumAcv;
+    d.low = sumAcv;
+    sumAcv += d.acv;
+    d.sumAcv = sumAcv;
+    d.high = sumAcv;
+    d.close = sumAcv;
+
+    return d;
+  });
+  // console.log("series data", seriesData);
+  return seriesData;
+}

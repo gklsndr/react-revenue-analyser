@@ -181,7 +181,7 @@ export default function ReactVirtualizedTable(tableData) {
           {
             width: "12%",
             label: "Posting Period",
-            dataKey: "date",
+            dataKey: "dateString",
             numeric: true
           },
           {

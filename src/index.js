@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "react-dom";
 import Chart from "./Chart";
-import { getData } from "./utils";
+import { getData, transformTimeseriesData } from "./utils";
 import MenuItem from "@mui/material/MenuItem";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import revenueData from "../public/data.js";
@@ -9,7 +9,7 @@ import "../public/styles.css";
 import ReactVirtualizedTable from "./Table";
 
 const chartTypes = [
-  "Revenue & ACV timeline",
+  "Revenue & ACV(Sum) timeline",
   "Revenue & TCV timeline",
   "ACV vs TCV"
 ];
@@ -32,9 +32,12 @@ class ChartComponent extends React.Component {
   }
 
   componentDidMount() {
+    let revenueSeriesData = transformTimeseriesData(revenueData);
+    this.setState({ chartData: revenueSeriesData });
+    console.log("Series Data:", revenueSeriesData);
     getData().then((data) => {
-      this.setState({ chartData: data });
-      console.log(data);
+      // this.setState({ chartData: data });
+      console.log("Sample chart data", data);
     });
   }
 
@@ -72,7 +75,7 @@ class ChartComponent extends React.Component {
         {this.state.chartData && (
           <div className="dataContainer">
             <Chart data={this.state.chartData} />
-            {ReactVirtualizedTable(revenueData)}
+            {ReactVirtualizedTable(this.state.chartData)}
           </div>
         )}
       </div>
